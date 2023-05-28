@@ -1,9 +1,11 @@
 import SideMenu from '@/components/sidebar/SideMenu'
 import Sidebar from '@/components/sidebar/Sidebar'
+import SidebarProvider from '@/context/SidebarContext'
 import { cn } from '@/lib/utils'
 import '@/styles/globals.css'
 import { url } from 'inspector'
 import { Poppins } from 'next/font/google'
+import Image from 'next/image'
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -21,19 +23,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang='en'>
       <body className={cn(`${poppins.className} bg-[#1A1B1E]`)}>
         <div className='flex'>
-          <Sidebar />
-          <SideMenu />
-          <div
-            style={{
-              backgroundImage: `url('/assets/background_image.png')`,
-              backgroundRepeat: 'no-repeat',
-              objectFit: 'cover',
-              backdropFilter: 'blur(10px)',
-            }}
-            className='w-full p-8'
-          >
+          <SidebarProvider>
+            <Sidebar />
             {children}
-          </div>
+          </SidebarProvider>
         </div>
       </body>
     </html>

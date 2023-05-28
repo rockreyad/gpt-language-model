@@ -1,28 +1,55 @@
+'use client'
+import { useSidebar } from '@/context/SidebarContext'
+import { cn } from '@/lib/utils'
 import Image from 'next/image'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export default function Sidebar() {
+  const path = usePathname()
+  const { toggleSidebar, setToggleSidebar } = useSidebar()
+
+  function handleToggleSidebar() {
+    setToggleSidebar(!toggleSidebar)
+  }
   return (
-    <div className='bg-primary h-screen'>
-      <div className='bg-[#2E3033] bg-opacity-70 w-28'>
-        <div className='grid justify-center gap-y-8'>
-          <Image src='/logo.svg' alt='me' width='64' height='64' />
+    <div className={`h-screen bg-nav-pattern bg-no-repeat bg-cover bg-top`}>
+      <div className='w-[77px] h-full pt-7 flex flex-col justify-between'>
+        <div>
+          {/* Brand icon */}
+          <div className='grid justify-center'>
+            <Image src='/logo.svg' alt='me' width='35' height='30' />
+          </div>
+
+          {/* Menu */}
+          <div className='flex flex-col justify-center gap-y-1 pl-3 pr-2 pt-16'>
+            {menus.map((menu, index) => {
+              return (
+                <Link
+                  href={menu.href}
+                  key={index}
+                  className={cn(
+                    'w-full flex flex-col items-center justify-center space-y-2 py-3 rounded-3xl hover:bg-gradient-to-tr from-[#3E3E3E] via-[#2C2C2C] to-[#979797]',
+                    path.startsWith(menu.href) &&
+                      'bg-gradient-to-tr from-[#3E3E3E] via-[#2C2C2C] to-[#979797]'
+                  )}
+                >
+                  <Image src={'/assets' + menu.icon} alt={menu.name} width='16' height='16' />
+                  <span className='text-[8px] text-white capitalize'>{menu.name}</span>
+                </Link>
+              )
+            })}
+          </div>
         </div>
-        <div className='grid justify-center gap-4'>
-          {menus.map((menu, index) => {
-            return (
-              <div
-                key={index}
-                style={{
-                  background:
-                    'linear-gradient(28.72deg,#3E3E3E -5.54%, #2C2C2C 62.1%, #979797 113.25%)',
-                }}
-                className='flex flex-col items-center justify-center space-y-2 py-4 px-1 rounded-3xl backdrop-blur-lg'
-              >
-                <Image src={'/assets' + menu.icon} alt={menu.name} width='24' height='24' />
-                <span className='text-xs text-white capitalize'>{menu.name}</span>
-              </div>
-            )
-          })}
+        {/* Sidebar action */}
+        <div className='flex justify-center place-self-end cursor-pointer'>
+          <Image
+            onClick={() => handleToggleSidebar()}
+            src={'/assets/side_reveal.png'}
+            alt=''
+            width={100}
+            height={100}
+          />
         </div>
       </div>
     </div>
@@ -34,11 +61,18 @@ const menus = [
     name: 'home',
     icon: '/home_icon.svg',
     href: '/dashboard',
+    width: '16',
+    height: '16',
   },
   {
     name: 'chat',
     icon: '/chat_icon.svg',
     href: '/chat',
+  },
+  {
+    name: 'Create',
+    icon: '/create_icon.svg',
+    href: '/create',
   },
   {
     name: 'community',
@@ -48,7 +82,7 @@ const menus = [
   {
     name: 'collections',
     icon: '/collection_icon.svg',
-    href: '/collections',
+    href: 'collections',
   },
   {
     name: 'bounty',

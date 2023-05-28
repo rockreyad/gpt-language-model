@@ -1,12 +1,18 @@
+'use client'
 import Image from 'next/image'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
 import { CameraIcon, LayoutList, MessageSquare, Settings } from 'lucide-react'
 import { Badge } from '../ui/badge'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { cn } from '../../lib/utils'
+import { useSidebar } from '@/context/SidebarContext'
 
 export default function SideMenu() {
+  const path = usePathname()
+  const { toggleSidebar } = useSidebar()
   return (
-    <div className='bg-[#1A1B1E] w-80'>
+    <div className={cn(!toggleSidebar ? 'hidden' : 'bg-[#1A1B1E] w-80')}>
       <div className='w-80 bg-inherit text-white p-6'>
         <div className='flex flex-row space-x-5'>
           <div className='bg-[#9F9F9F] rounded-xl p-4'>
@@ -21,14 +27,25 @@ export default function SideMenu() {
           <MessageSquare /> <span className='text-base leading-5 capitalize'>chatbot</span>
         </Badge>
         <div className='grid gap-y-4 py-14'>
-          <Link href={'/'}>
-            <div className='flex py-3 px-3 rounded-2xl space-x-4 hover:bg-gradient-to-tr from-[#3E3E3E] via-[#2C2C2C] to-[#979797]'>
+          <Link href={'/create'}>
+            <div
+              className={cn(
+                'flex py-3 px-3 rounded-2xl space-x-4 hover:bg-gradient-to-tr from-[#3E3E3E] via-[#2C2C2C] to-[#979797]',
+                path === '/create' && 'bg-gradient-to-tr from-[#3E3E3E] via-[#2C2C2C] to-[#979797]'
+              )}
+            >
               <Settings />
               <span className=''>Prompt</span>
             </div>
           </Link>
-          <Link href={'/basics'}>
-            <div className='flex py-3 px-3 rounded-2xl space-x-4 bg-gradient-to-tr from-[#3E3E3E] via-[#2C2C2C] to-[#979797]'>
+          <Link href={'/create/basics'}>
+            <div
+              className={cn(
+                'flex py-3 px-3 rounded-2xl space-x-4 hover:bg-gradient-to-tr from-[#3E3E3E] via-[#2C2C2C] to-[#979797]',
+                path === '/create/basics' &&
+                  'bg-gradient-to-tr from-[#3E3E3E] via-[#2C2C2C] to-[#979797]'
+              )}
+            >
               <LayoutList />
               <span className=''>Basics</span>
             </div>

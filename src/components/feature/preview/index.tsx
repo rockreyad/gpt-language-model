@@ -11,6 +11,7 @@ import { Label, Textarea, Slider, Button, Input } from '@/components/ui'
 import MessageContainer from '../../MessageContainer'
 import { PlayIcon } from 'lucide-react'
 import PrimaryCard from '@/components/card/PrimaryCard'
+import Image from 'next/image'
 
 export default function Preview() {
   return (
@@ -47,7 +48,7 @@ export default function Preview() {
               className=' bg-white rounded-2xl text-black space-x-1'
             >
               <span> Send </span>
-              <PlayIcon className='w-4 h-4' />
+              <Image src='/assets/send.svg' alt='send' width='24' height='24' />
             </Button>
           </CardFooter>
         </div>
