@@ -122,6 +122,7 @@ export const reducer = (state: State, action: Action): State => {
   }
 }
 
+// eslint-disable-next-line
 const listeners: Array<(state: State) => void> = []
 
 let memoryState: State = { toasts: [] }

@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
-import { CameraIcon, LayoutList, MessageSquare, Settings } from 'lucide-react'
+import { CardTitle } from '../ui/card'
+import { CameraIcon, LayoutList } from 'lucide-react'
 import { Badge } from '../ui/badge'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -24,7 +24,14 @@ export default function SideMenu() {
           variant={'default'}
           className='bg-white bg-opacity-20 flex justify-center mx-auto w-fit space-x-3 opacity-60 px-4 py-2'
         >
-          <MessageSquare /> <span className='text-base leading-5 capitalize'>chatbot</span>
+          <Image
+            className='text-white text-opacity-60'
+            src='/assets/chat_icon.png'
+            alt='chatbot'
+            width={20}
+            height={20}
+          />{' '}
+          <span className='text-base leading-5 capitalize text-white text-opacity-60'>chatbot</span>
         </Badge>
         <div className='grid gap-y-4 py-14'>
           <Link href={'/create'}>
@@ -34,7 +41,14 @@ export default function SideMenu() {
                 path === '/create' && 'bg-gradient-to-tr from-[#3E3E3E] via-[#2C2C2C] to-[#979797]'
               )}
             >
-              <Settings />
+              {/* <Settings /> */}
+              <Image
+                src='/assets/settings_icon.png'
+                alt='setting'
+                height={100}
+                width={100}
+                className='w-[21.8px] h-[21.8px]'
+              />
               <span className=''>Prompt</span>
             </div>
           </Link>
@@ -47,6 +61,13 @@ export default function SideMenu() {
               )}
             >
               <LayoutList />
+              {/* <Image
+                src='/assets/list_icon.png'
+                alt='setting'
+                height={100}
+                width={100}
+                className='w-[23px] h-[21px]'
+              /> */}
               <span className=''>Basics</span>
             </div>
           </Link>

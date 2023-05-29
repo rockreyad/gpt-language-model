@@ -1,5 +1,4 @@
 import {
-  Card,
   CardContent,
   CardDescription,
   CardFooter,
@@ -7,9 +6,8 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 
-import { Label, Textarea, Slider, Button, Input } from '@/components/ui'
+import { Button, Input } from '@/components/ui'
 import MessageContainer from '../../MessageContainer'
-import { PlayIcon } from 'lucide-react'
 import PrimaryCard from '@/components/card/PrimaryCard'
 import Image from 'next/image'
 
@@ -17,7 +15,7 @@ export default function Preview() {
   return (
     <div className='w-full'>
       <PrimaryCard>
-        <div className='flex flex-col justify-between h-screen'>
+        <div className='flex flex-col justify-between h-fit md:h-screen'>
           <div>
             <CardHeader>
               <CardTitle>Preview and Test</CardTitle>
@@ -27,11 +25,11 @@ export default function Preview() {
               <div className='grid justify-center space-y-5'>
                 <MessageContainer
                   isBot={false}
-                  message='Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex totam, ab odio id ea expedita odit quod sequi.kamdadadadadaadadaadadadadadadadadadadadadadadadadaadadadadadadadadadaad'
+                  message='You are a multilingual assistant that translates from english to French: Hello!'
                 />
                 <MessageContainer
                   isBot={true}
-                  message='Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex totam, ab odio id ea expedita odit quod sequi. Dolorum voluptates quos cumque ratione repellendus natus quibusdam sapiente provident magni incidunt repellat officia, mollitia, laborum, ipsum facere eveniet cum! Quis, fugit!'
+                  message='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
                 />
               </div>
             </CardContent>

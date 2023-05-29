@@ -1,13 +1,17 @@
-import SideMenu from '@/components/sidebar/SideMenu'
 import Sidebar from '@/components/sidebar/Sidebar'
 import SidebarProvider from '@/context/SidebarContext'
 import { cn } from '@/lib/utils'
 import '@/styles/globals.css'
-import { url } from 'inspector'
-import { Poppins } from 'next/font/google'
-import Image from 'next/image'
+import { Poppins, Inter } from 'next/font/google'
 
 const poppins = Poppins({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['400', '500', '600', '700'],
+})
+
+//eslint-disable-next-line
+const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   weight: ['400', '500', '600', '700'],
